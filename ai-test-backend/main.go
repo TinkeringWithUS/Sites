@@ -63,6 +63,7 @@ func main() {
 	// Set a lower memory limit for multipart forms (default is 32 MiB)
 	router.MaxMultipartMemory = 8 << 20 // 8 MiB
 	router.Static("/", "./public")
+	router.Use(CORSMiddleware())
 	router.POST("/", func(c *gin.Context) {
 		// Source
 		file, err := c.FormFile("file")
